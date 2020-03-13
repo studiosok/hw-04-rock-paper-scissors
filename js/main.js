@@ -6,57 +6,34 @@ $(() => {
   let currentBotRoundScore = 0
   let userChoiceTally = 0
   let botChoiceTally = 0
-  let botWord
-  let userChoice
   //not generate bot choice until button is clicked
   //listen for a button click, then generate bot choice and compare to user choice
-  $('button').click(() => {
 
-      $('#paper').click(() => {
-        userChoice = 1
-        return userChoice
-      })
-      $('#rock').click(() => {
-        userChoice = 2
-        return userChoice
-      })
-      $('#scissors').click(() => {
-        userChoice = 3
-        return userChoice
-      })
+  $('#paper').click(() => {
+    compare(1)
+  })
+  $('#rock').click(() => {
+    compare(2)
+  })
+  $('#scissors').click(() => {
+    compare(3)
+  })
 
+  function compare(userChoice) {
     let botChoice = Math.floor(Math.random()* 3) + 1
-
-    function sayBotChoice() {
-      if(botChoice === 1) {
-        botWord = 'Paper'
-      } else if(botChoice === 2) {
-        botWord = 'Rock'
-      } else {
-        botWord = 'Scissors'
-      }
-    }
-
-  function compare() {
-    console.log(botChoice)
-    console.log(userChoice)
     if(userChoice === botChoice) {
       tieHand()
     } else if((userChoice === 1 && botChoice === 2) || (userChoice === 2 && botChoice === 3) || (userChoice === 3 && botChoice === 1)){
-      sayBotChoice()
-      userWinsHand()
+      userWinsHand(botChoice)
       userChoiceTally = userChoiceTally += 1
     } else {
-      sayBotChoice()
-      botWinsHand()
+      botWinsHand(botChoice)
       botChoiceTally = botChoiceTally += 1
     }
   }
-  compare()
 
-  })
-
-  function userWinsHand() {
+  function userWinsHand(botChoice) {
+    let botWord = sayBotChoice(botChoice)
     messageUpdate(`you won, bot chose ${botWord}`)
     $('#humanScore').text(currentHumanScore = currentHumanScore + 1)
     checkForBonus()
@@ -71,10 +48,10 @@ $(() => {
       resetGame()
      // end game and reset everything. fireworks for extra extra
     }
-
   }
 
-  function botWinsHand() {
+  function botWinsHand(botChoice) {
+    let botWord = sayBotChoice(botChoice)
     messageUpdate(`you lost, bot won and chose ${botWord}`)
     $('#computerScore').text(currentBotScore = currentBotScore + 1)
     checkForBonus()
@@ -130,6 +107,16 @@ function resetChoiceTally() {
   if((userChoiceTally === 3) || (botChoiceTally === 3)) {
     userChoiceTally = 0
     botChoiceTally = 0
+  }
+}
+
+function sayBotChoice(botChoice) {
+  if(botChoice === 1) {
+    return 'Paper'
+  } else if(botChoice === 2) {
+    return 'Rock'
+  } else {
+    return 'Scissors'
   }
 }
 
