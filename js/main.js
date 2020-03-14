@@ -37,8 +37,6 @@ $(() => {
     }
 
   function compare() {
-    console.log(botChoice)
-    console.log(userChoice)
     if(userChoice === botChoice) {
       tieHand()
     } else if((userChoice === 1 && botChoice === 2) || (userChoice === 2 && botChoice === 3) || (userChoice === 3 && botChoice === 1)){
