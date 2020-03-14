@@ -8,8 +8,7 @@ $(() => {
   let botChoiceTally = 0
   let botWord
   let userChoice
-  //not generate bot choice until button is clicked
-  //listen for a button click, then generate bot choice and compare to user choice
+ 
   $('button').click(() => {
 
       $('#paper').click(() => {
@@ -69,7 +68,6 @@ $(() => {
       messageUpdate('You won this game!')
       // enableWinnerFace()
       resetGame()
-     // end game and reset everything. fireworks for extra extra
     }
 
   }
@@ -87,7 +85,6 @@ $(() => {
       messageUpdate('Bot won this game, better guessing next time')
       // enableLoserFace()
       resetGame()
-    // // end game and reset everything. frowny face for extra extra
     }
   }
 
@@ -133,50 +130,4 @@ function resetChoiceTally() {
   }
 }
 
-// function displayWinnerFace() {
-// $('#winContainer').click(() => {
-//   toggle()
-// })
-// }
-  //
-  // function displayLoserFace() {
-  //   $('loserFace').
-  // }
-  //
-  // function displayWinnerFace() {
-  //   $('winnerFace').
-  // }
-
-
-
-/*
-
-Issue: bot always wins first hand, and botWord is undefined
-
-X user input (assign numbers to r/p/s)
-X computer input (random generation - assign numbers to r/p/s)
-
-X connect r/p/s button to front end button - .click event
-
-X compare user click to computer input
-
-X calculate winner
-
-X adjust scoreboard to reflect winner score increase
-
-X display message to say who won
-
-clean up code - combine things that do same things, adjust similar variables
-
-X bonus - 1st to 10 winner of that round
-  check score, if 10 display who won the round, reset scores to 0 *need to keep track of roundWinner value
-X bonus 2 - 1st winner of 2 rounds winner of game
-check value of roundWinner; if 2, display winner of game
-X bonus 3 - winning 3 hands in a row results in 2 bonus points
-keep track of wins for user and bot, if 3 consecutive wins, add bonus *need to keep track of handWinner value
-X bonus 4 - display what bot chose
-
-clean up code - combine things that do same things, adjust similar variables
-
-*/
 })
